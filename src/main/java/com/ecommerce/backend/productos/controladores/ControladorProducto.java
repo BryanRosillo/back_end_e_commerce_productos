@@ -36,8 +36,7 @@ public class ControladorProducto {
     public ResponseEntity<Object> crearProducto(@RequestBody @Valid Producto producto, @RequestHeader("X-User-ID") Long idUsuario){
     	try {
     		producto.setIdUsuario(idUsuario);
-    		this.servicioProducto.guardaProducto(producto);
-    		return ResponseEntity.status(HttpStatus.CREATED).build();
+    		return ResponseEntity.status(HttpStatus.CREATED).body(this.servicioProducto.guardaProducto(producto));
     	}catch(Exception e) {
     		return ResponseEntity.badRequest().build();
     	}
